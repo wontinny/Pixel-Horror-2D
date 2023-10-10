@@ -94,18 +94,22 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetTrigger("batAttack");
     }
+
     public void batAttack()
     {
         if (spriteRenderer.flipX == true)
         {
-            print("al");
             BatAttack.AttackLeft();
         }
         else
         {
-            print("ar");
             BatAttack.AttackRight();
         }
+    }
+
+    public void stopAttack()
+    {
+        BatAttack.StopAttack();
     }
     
     /*public void LockMovement()

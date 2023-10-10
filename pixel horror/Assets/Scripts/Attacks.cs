@@ -7,6 +7,7 @@ public class Attacks : MonoBehaviour
   
     
     Vector2 rightAttackOffset;
+
     Collider2D batCollider;
 
 
@@ -24,9 +25,9 @@ public class Attacks : MonoBehaviour
     public void AttackLeft()
     {
         batCollider.enabled = true;
-        transform.position = new Vector3((rightAttackOffset.x * -1), rightAttackOffset.y);
+        transform.position = new Vector3(rightAttackOffset.x * -1, rightAttackOffset.y);
     }
-    private void StopAttack()
+    public void StopAttack()
     {
         batCollider.enabled = false;
     }
