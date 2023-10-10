@@ -4,28 +4,27 @@ using UnityEngine;
 
 public class Attacks : MonoBehaviour
 {
-  
-    
+    public Collider2D batCollider;
+
     Vector2 rightAttackOffset;
 
-    Collider2D batCollider;
+    
 
 
     private void Start()
     {
-        batCollider = GetComponent<Collider2D>();
         rightAttackOffset = transform.position;
     }
    
     public void AttackRight()
     {
         batCollider.enabled = true;
-        transform.position = rightAttackOffset;
+        transform.localPosition = rightAttackOffset;
     }
     public void AttackLeft()
     {
         batCollider.enabled = true;
-        transform.position = new Vector3(rightAttackOffset.x * -1, rightAttackOffset.y);
+        transform.localPosition = new Vector3(rightAttackOffset.x * -1, rightAttackOffset.y);
     }
     public void StopAttack()
     {
