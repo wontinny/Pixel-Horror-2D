@@ -8,14 +8,14 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 1f;
     public float collisionOffset = 0.02f;
     public ContactFilter2D movementFilter;
-    
+    public Attacks BatAttack;
     Vector2 movementInput;
     SpriteRenderer spriteRenderer;
     //how smooth the player moves (kinematic)
     Rigidbody2D rb;
     Animator animator;
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
-
+    //bool canMove = true;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -48,25 +48,36 @@ public class PlayerController : MonoBehaviour
 
         if (movementInput.x < 0)
         {
+            
             spriteRenderer.flipX = true;
+        
         }
         else if (movementInput.x > 0)
         {
+            
             spriteRenderer.flipX = false;
+           
         }
     }
 
     private bool TryMove(Vector2 direction)
     {
-        int count = rb.Cast(
-            direction,
-            movementFilter,
-            castCollisions,
-            moveSpeed * Time.fixedDeltaTime + collisionOffset);
-        if (count == 0)
+        if (direction != Vector2.zero)
         {
-            rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
-            return true;
+            int count = rb.Cast(
+                direction,
+                movementFilter,
+                castCollisions,
+                moveSpeed * Time.fixedDeltaTime + collisionOffset);
+            if (count == 0)
+            {
+                rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
@@ -79,4 +90,31 @@ public class PlayerController : MonoBehaviour
         movementInput = movementValue.Get<Vector2>();
     }
     
+    void OnFire()
+    {
+        animator.SetTrigger("batAttack");
+    }
+    public void batAttack()
+    {
+        if (spriteRenderer.flipX == true)
+        {
+            print("al");
+            BatAttack.AttackLeft();
+        }
+        else
+        {
+            print("ar");
+            BatAttack.AttackRight();
+        }
+    }
+    
+    /*public void LockMovement()
+    {
+        canMove = false;
+    }
+
+    public void UnLockMovement()
+    {
+        canMove = true;
+    }*/
 }
