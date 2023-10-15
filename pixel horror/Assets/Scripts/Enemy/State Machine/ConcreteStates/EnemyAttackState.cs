@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyAttackState : EnemyState
 {
     private Transform _playerTransform;
-
+    
     private float _timer;
     private float _timeBetweeenShots = 2f;
 
@@ -15,6 +15,7 @@ public class EnemyAttackState : EnemyState
     private float _timeTillExit = 2f;
     private float _distanceToCountExit = 1.25f;
 
+    
     public EnemyAttackState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;

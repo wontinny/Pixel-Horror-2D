@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckable
 {
+    Animator animator;
     public Rigidbody2D RB { get; set; }
     public bool IsFacingRight { get; set; } = true;
     [field: SerializeField] public float MaxHealth { get; set; } = 100f;
@@ -41,6 +42,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
         RB = GetComponent<Rigidbody2D>();
 
         StateMachine.Initialize(IdleState);
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -75,6 +77,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
     public void MoveEnemy(Vector2 velocity)
     {
         RB.velocity = velocity;
+        animator.SetBool("isMoving", true);
         CheckForLeftOrRightFacing(velocity);
     }
     public void CheckForLeftOrRightFacing(Vector2 velocity)

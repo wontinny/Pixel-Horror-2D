@@ -13,18 +13,18 @@ public class Attacks : MonoBehaviour
 
     private void Start()
     {
-        rightAttackOffset = transform.position;
+        //rightAttackOffset = transform.position;
     }
    
     public void AttackRight()
     {
         batCollider.enabled = true;
-        transform.localPosition = rightAttackOffset;
+        //transform.position = rightAttackOffset;
     }
     public void AttackLeft()
     {
         batCollider.enabled = true;
-        transform.localPosition = new Vector3(rightAttackOffset.x * -1, rightAttackOffset.y);
+        //transform.position = new Vector3(rightAttackOffset.x * -1, rightAttackOffset.y);
     }
     public void StopAttack()
     {
