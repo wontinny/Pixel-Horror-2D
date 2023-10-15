@@ -16,14 +16,46 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
     //bool canMove = true;
+
+    private float activeMoveSpeed;
+    public float dashSpeed;
+    public float dashLength = .5f;
+    public float dashCooldown = 1f;
+    private float dashCounter;
+    private float dashCoolCounter;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        activeMoveSpeed = moveSpeed;
     }
 
-    
+    private void Update()
+    {
+        /*if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (dashCoolCounter <= 0 && dashCounter <= 0)
+            {
+                activeMoveSpeed = dashSpeed;
+                dashCounter = dashLength;
+            }
+        }
+        if(dashCounter > 0)
+        {
+            dashCounter -= Time.deltaTime;
+            if (dashCounter <= 0)
+            {
+                activeMoveSpeed = moveSpeed;
+                dashCoolCounter = dashCooldown;
+            }
+        }
+        if (dashCoolCounter > 0)
+        {
+            dashCoolCounter -= Time.deltaTime;
+        }*/
+    }
 
     private void FixedUpdate()
     {
@@ -68,10 +100,10 @@ public class PlayerController : MonoBehaviour
                 direction,
                 movementFilter,
                 castCollisions,
-                moveSpeed * Time.fixedDeltaTime + collisionOffset);
+                activeMoveSpeed * Time.fixedDeltaTime + collisionOffset);
             if (count == 0)
             {
-                rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+                rb.MovePosition(rb.position + direction * activeMoveSpeed * Time.fixedDeltaTime);
                 return true;
             }
             else
@@ -97,7 +129,7 @@ public class PlayerController : MonoBehaviour
 
     public void batAttack()
     {
-        if (spriteRenderer.flipX == true)
+        if (spriteRenderer.flipX != true)
         {
             BatAttack.AttackLeft();
         }
@@ -112,6 +144,18 @@ public class PlayerController : MonoBehaviour
         BatAttack.StopAttack();
     }
     
+
+   /* void OnDash()
+    {
+        if (dashCoolCounter <= 0 && dashCounter <= 0)
+        {
+            activeMoveSpeed = dashSpeed;
+            dashCounter = dashLength;
+        }
+    }*/
+
+
+
     /*public void LockMovement()
     {
         canMove = false;
