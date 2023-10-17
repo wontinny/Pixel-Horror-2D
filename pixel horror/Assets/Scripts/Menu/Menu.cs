@@ -6,6 +6,12 @@ public class Menu : MonoBehaviour
 {
     public void PlayGame()
     {
+        StartCoroutine(WaitForAnimation());
+    }
+
+    IEnumerator WaitForAnimation()
+    {
+        yield return new WaitForSeconds(2);
         SceneManager.LoadSceneAsync(1);
     }
 
