@@ -8,7 +8,16 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 1f;
     public float collisionOffset = 0.02f;
     public ContactFilter2D movementFilter;
+
     public Attacks BatAttack;
+    public Transform rightAttackPoint;
+    public Transform leftAttackPoint;
+    public float attackRange = 0.1f;
+    public LayerMask enemyLayers;
+    [field: SerializeField] private float damageAmount = 50f;
+    [field: SerializeField] private float knockbackForce = 100f;
+    [field: SerializeField] private float playerKnockbackForce = 50f;
+
     Vector2 movementInput;
     SpriteRenderer spriteRenderer;
     //how smooth the player moves (kinematic)
@@ -24,8 +33,12 @@ public class PlayerController : MonoBehaviour
     private float dashCounter;
     private float dashCoolCounter;
 
+    public float CurrentHealth;
+    [field: SerializeField]  public float MaxHealth = 100f;
+
     void Start()
     {
+        CurrentHealth = MaxHealth;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -125,8 +138,31 @@ public class PlayerController : MonoBehaviour
     void OnFire()
     {
         animator.SetTrigger("batAttack");
-    }
+        if (spriteRenderer.flipX != true)
+        {
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(rightAttackPoint.transform.position, attackRange, enemyLayers);
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                //Debug.Log("We hit right" + enemy.name);
+                Vector2 direction = (enemy.transform.position - rightAttackPoint.position).normalized;
+                Vector2 knockback = direction * knockbackForce;
+                enemy.GetComponent<Enemy>().Damage(damageAmount, knockback);
+            }
+        }
+        else
+        {
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(leftAttackPoint.transform.position, attackRange, enemyLayers);
 
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                //Debug.Log("We hit left" + enemy.name);
+                Vector2 direction = (enemy.transform.position - leftAttackPoint.position).normalized;
+                Vector2 knockback = direction * knockbackForce;
+                enemy.GetComponent<Enemy>().Damage(damageAmount, knockback);
+            }
+        }
+    }
+    
     public void batAttack()
     {
         if (spriteRenderer.flipX != true)
@@ -143,16 +179,39 @@ public class PlayerController : MonoBehaviour
     {
         BatAttack.StopAttack();
     }
-    
 
-   /* void OnDash()
+    public void TakeDamage(float damageAmount, Vector2 knockback)
     {
-        if (dashCoolCounter <= 0 && dashCounter <= 0)
+        animator.SetBool("isMoving", false);
+        animator.SetTrigger("damage");
+        CurrentHealth -= damageAmount;
+        rb.AddForce(knockback, ForceMode2D.Impulse);
+
+        if (CurrentHealth <= 0)
         {
-            activeMoveSpeed = dashSpeed;
-            dashCounter = dashLength;
+            Destroy(gameObject);
         }
-    }*/
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "damagePlayer")
+        {
+            Vector2 direction = (transform.position - other.gameObject.transform.position).normalized;
+            Vector2 knockback = direction * playerKnockbackForce;
+            TakeDamage(10f, knockback);
+        }
+    }
+
+
+    /* void OnDash()
+     {
+         if (dashCoolCounter <= 0 && dashCounter <= 0)
+         {
+             activeMoveSpeed = dashSpeed;
+             dashCounter = dashLength;
+         }
+     }*/
 
 
 

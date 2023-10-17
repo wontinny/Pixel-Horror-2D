@@ -8,4 +8,12 @@ public class DestroyBullet : MonoBehaviour
     {
         Destroy(gameObject, 1.5f);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
+        }
+    }
 }

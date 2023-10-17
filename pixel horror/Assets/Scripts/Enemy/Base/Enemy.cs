@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
     public float CurrentHealth { get; set; }
     public bool IsAggroed { get; set; }
     public bool IsWithinStrikingDistance {  get; set; }
+    public bool isHit { get; set; }
 
     #region State Machine Stuff
 
@@ -18,6 +19,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
     public EnemyIdleState IdleState { get; set; }
     public EnemyChaseState ChaseState { get; set; }
     public EnemyAttackState AttackState { get; set; }
+    public EnemyDamagedState DamageState { get; set; }
 
     #endregion
 
@@ -34,6 +36,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
         IdleState = new EnemyIdleState(this, StateMachine);
         ChaseState = new EnemyChaseState(this, StateMachine);
         AttackState = new EnemyAttackState(this, StateMachine);
+        DamageState = new EnemyDamagedState(this, StateMachine);
     }
 
     private void Start()
@@ -56,11 +59,15 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
     }
 
     #region Health / Die Functions
-    public void Damage(float damageAmount)
+    public void Damage(float damageAmount, Vector2 knockback)
     {
+        animator.SetBool("isMoving", false);
+        animator.SetTrigger("damage");
+        StateMachine.ChangeState(DamageState);
         CurrentHealth -= damageAmount;
+        RB.AddForce(knockback, ForceMode2D.Impulse);
 
-        if (CurrentHealth <= 0f)
+        if (CurrentHealth <= 0)
         {
             Die();
         }
@@ -74,6 +81,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
     #endregion
 
     #region Movement Functions
+
     public void MoveEnemy(Vector2 velocity)
     {
         RB.velocity = velocity;

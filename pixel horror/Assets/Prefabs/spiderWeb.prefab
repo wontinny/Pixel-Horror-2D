@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -721812643303285482}
   m_Layer: 0
   m_Name: spiderWeb
-  m_TagString: Untagged
+  m_TagString: damagePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,7 +123,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &-721812643303285482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,3 +136,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76493deb144579a48aeda3183e0769f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackForce: 0.005
