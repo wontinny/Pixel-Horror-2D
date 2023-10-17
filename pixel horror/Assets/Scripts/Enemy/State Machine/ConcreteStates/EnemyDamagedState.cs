@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyChaseState : EnemyState
+public class EnemyDamagedState : EnemyState
 {
     private Transform _playerTransform;
-    private float _MovementSpeed = 0.4f;
-    Animator animator;
 
-    public EnemyChaseState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
+    private float _timer;
+    private float _damagedtime = 0.5f;
+
+
+    public EnemyDamagedState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
     {
-        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
     }
 
     public override void AnimationTriggerEvent(Enemy.AnimationTriggerType triggerType)
@@ -32,11 +34,14 @@ public class EnemyChaseState : EnemyState
     {
         base.FrameUpdate();
 
-        Vector2 moveDirection = (_playerTransform.position - enemy.transform.position).normalized;
-        enemy.MoveEnemy(moveDirection * _MovementSpeed);
 
-        if (enemy.IsWithinStrikingDistance)
+        if (_timer <= _damagedtime)
         {
+            _timer += Time.deltaTime;
+
+        }
+        else 
+        { 
             enemy.StateMachine.ChangeState(enemy.AttackState);
         }
     }

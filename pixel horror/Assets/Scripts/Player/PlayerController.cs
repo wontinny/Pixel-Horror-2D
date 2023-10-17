@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public float attackRange = 0.1f;
     public LayerMask enemyLayers;
     [field: SerializeField] private float damageAmount = 50f;
+    public float knockbackForce = 0.005f;
 
     Vector2 movementInput;
     SpriteRenderer spriteRenderer;
@@ -31,8 +32,12 @@ public class PlayerController : MonoBehaviour
     private float dashCounter;
     private float dashCoolCounter;
 
+    public float CurrentHealth;
+    [field: SerializeField]  public float MaxHealth = 100f;
+
     void Start()
     {
+        CurrentHealth = MaxHealth;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -134,22 +139,25 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("batAttack");
         if (spriteRenderer.flipX != true)
         {
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(rightAttackPoint.position, attackRange, enemyLayers);
-
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(rightAttackPoint.transform.position, attackRange, enemyLayers);
             foreach (Collider2D enemy in hitEnemies)
             {
                 Debug.Log("We hit right" + enemy.name);
-                enemy.GetComponent<Enemy>().Damage(damageAmount);
+                Vector2 direction = (enemy.transform.position - rightAttackPoint.position).normalized;
+                Vector2 knockback = direction * knockbackForce;
+                enemy.GetComponent<Enemy>().Damage(damageAmount, knockback);
             }
         }
         else
         {
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(leftAttackPoint.position, attackRange, enemyLayers);
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(leftAttackPoint.transform.position, attackRange, enemyLayers);
 
             foreach (Collider2D enemy in hitEnemies)
             {
                 Debug.Log("We hit left" + enemy.name);
-                enemy.GetComponent<Enemy>().Damage(damageAmount);
+                Vector2 direction = (enemy.transform.position - leftAttackPoint.position).normalized;
+                Vector2 knockback = direction * knockbackForce;
+                enemy.GetComponent<Enemy>().Damage(damageAmount, knockback);
             }
         }
     }

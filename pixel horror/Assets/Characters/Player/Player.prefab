@@ -320,9 +320,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   damageAmount: 10
+  knockbackForce: 100
   dashSpeed: 0
   dashLength: 0.5
   dashCooldown: 1
+  CurrentHealth: 0
+  MaxHealth: 100
 --- !u!50 &4033040181907396742
 Rigidbody2D:
   serializedVersion: 4

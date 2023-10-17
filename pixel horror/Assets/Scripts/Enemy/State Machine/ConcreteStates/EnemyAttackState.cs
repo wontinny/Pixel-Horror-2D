@@ -12,7 +12,7 @@ public class EnemyAttackState : EnemyState
     private float _bulletSpeed = 2f;
     private float _exitTimer;
     private float _timeTillExit = 2f;
-    private float _distanceToCountExit = 1.25f;
+    private float _distanceToCountExit = .5f;
 
     
     public EnemyAttackState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
@@ -38,7 +38,7 @@ public class EnemyAttackState : EnemyState
     public override void FrameUpdate()
     {
         base.FrameUpdate();
-        enemy.MoveEnemy(Vector2.zero);
+        //enemy.MoveEnemy(Vector2.zero);
 
         if (_timer > _timeBetweeenShots)
         {
