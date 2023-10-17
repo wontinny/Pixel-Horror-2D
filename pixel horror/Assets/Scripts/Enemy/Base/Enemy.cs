@@ -58,9 +58,10 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
     #region Health / Die Functions
     public void Damage(float damageAmount)
     {
+        animator.SetTrigger("damage");
         CurrentHealth -= damageAmount;
 
-        if (CurrentHealth <= 0f)
+        if (CurrentHealth <= 0)
         {
             Die();
         }

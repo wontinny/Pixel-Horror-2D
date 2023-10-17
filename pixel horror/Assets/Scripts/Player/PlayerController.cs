@@ -8,7 +8,14 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 1f;
     public float collisionOffset = 0.02f;
     public ContactFilter2D movementFilter;
+
     public Attacks BatAttack;
+    public Transform rightAttackPoint;
+    public Transform leftAttackPoint;
+    public float attackRange = 0.1f;
+    public LayerMask enemyLayers;
+    [field: SerializeField] private float damageAmount = 50f;
+
     Vector2 movementInput;
     SpriteRenderer spriteRenderer;
     //how smooth the player moves (kinematic)
@@ -125,8 +132,28 @@ public class PlayerController : MonoBehaviour
     void OnFire()
     {
         animator.SetTrigger("batAttack");
-    }
+        if (spriteRenderer.flipX != true)
+        {
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(rightAttackPoint.position, attackRange, enemyLayers);
 
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                Debug.Log("We hit right" + enemy.name);
+                enemy.GetComponent<Enemy>().Damage(damageAmount);
+            }
+        }
+        else
+        {
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(leftAttackPoint.position, attackRange, enemyLayers);
+
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                Debug.Log("We hit left" + enemy.name);
+                enemy.GetComponent<Enemy>().Damage(damageAmount);
+            }
+        }
+    }
+    
     public void batAttack()
     {
         if (spriteRenderer.flipX != true)
@@ -144,7 +171,7 @@ public class PlayerController : MonoBehaviour
         BatAttack.StopAttack();
     }
     
-
+    
    /* void OnDash()
     {
         if (dashCoolCounter <= 0 && dashCounter <= 0)

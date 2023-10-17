@@ -10,7 +10,6 @@ public class EnemyAttackState : EnemyState
     private float _timeBetweeenShots = 2f;
 
     private float _bulletSpeed = 2f;
-
     private float _exitTimer;
     private float _timeTillExit = 2f;
     private float _distanceToCountExit = 1.25f;
@@ -41,7 +40,7 @@ public class EnemyAttackState : EnemyState
         base.FrameUpdate();
         enemy.MoveEnemy(Vector2.zero);
 
-        if(_timer > _timeBetweeenShots)
+        if (_timer > _timeBetweeenShots)
         {
             _timer = 0f;
 
