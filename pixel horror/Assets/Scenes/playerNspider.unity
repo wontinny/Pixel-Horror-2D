@@ -296,6 +296,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8920694569408378152, guid: 34e4c7e21eea57c45ac79e52a60ba8ef, type: 3}
+      propertyPath: knockbackForce
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34e4c7e21eea57c45ac79e52a60ba8ef, type: 3}
 --- !u!1001 &1660491693807117150
@@ -348,14 +352,6 @@ PrefabInstance:
     - target: {fileID: 1660491692526021005, guid: d4abad27d054ca045bce09fff8939dc7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1660491692526021007, guid: d4abad27d054ca045bce09fff8939dc7, type: 3}
-      propertyPath: m_Mass
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1660491692526021007, guid: d4abad27d054ca045bce09fff8939dc7, type: 3}
-      propertyPath: m_LinearDrag
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1660491692526021008, guid: d4abad27d054ca045bce09fff8939dc7, type: 3}
       propertyPath: m_Name

@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public float attackRange = 0.1f;
     public LayerMask enemyLayers;
     [field: SerializeField] private float damageAmount = 50f;
-    public float knockbackForce = 0.005f;
+    [field: SerializeField] private float knockbackForce = 0.005f;
 
     Vector2 movementInput;
     SpriteRenderer spriteRenderer;
@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(rightAttackPoint.transform.position, attackRange, enemyLayers);
             foreach (Collider2D enemy in hitEnemies)
             {
-                Debug.Log("We hit right" + enemy.name);
+                //Debug.Log("We hit right" + enemy.name);
                 Vector2 direction = (enemy.transform.position - rightAttackPoint.position).normalized;
                 Vector2 knockback = direction * knockbackForce;
                 enemy.GetComponent<Enemy>().Damage(damageAmount, knockback);
@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
 
             foreach (Collider2D enemy in hitEnemies)
             {
-                Debug.Log("We hit left" + enemy.name);
+                //Debug.Log("We hit left" + enemy.name);
                 Vector2 direction = (enemy.transform.position - leftAttackPoint.position).normalized;
                 Vector2 knockback = direction * knockbackForce;
                 enemy.GetComponent<Enemy>().Damage(damageAmount, knockback);
@@ -177,6 +177,19 @@ public class PlayerController : MonoBehaviour
     public void stopAttack()
     {
         BatAttack.StopAttack();
+    }
+
+    public void TakeDamage(float damageAmount, Vector2 knockback)
+    {
+        animator.SetBool("isMoving", false);
+        animator.SetTrigger("damage");
+        CurrentHealth -= damageAmount;
+        rb.AddForce(knockback, ForceMode2D.Impulse);
+
+        if (CurrentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
     
     

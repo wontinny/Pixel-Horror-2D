@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyChaseState : EnemyState
 {
     private Transform _playerTransform;
-    private float _MovementSpeed = 0.4f;
+    private float _MovementSpeed = 0.5f;
     Animator animator;
 
     public EnemyChaseState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
