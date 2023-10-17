@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Spider
   - damagePlayer
+  - mapBorder
   layers:
   - Default
   - TransparentFX
