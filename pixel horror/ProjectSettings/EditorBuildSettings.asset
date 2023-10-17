@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 3 (Mansion).unity
     guid: f7242fd892b93fd419bde0a08f144ef2
+  - enabled: 1
+    path: Assets/Scenes/Mansion(1.1).unity
+    guid: f89804e1d5e54744cb2effa62acc2b04
+  - enabled: 1
+    path: Assets/Scenes/Mansion(1.3).unity
+    guid: 18104a1df7568524d90476bd07efb585
   m_configObjects: {}
