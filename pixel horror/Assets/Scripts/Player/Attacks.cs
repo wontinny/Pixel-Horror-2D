@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Attacks : MonoBehaviour
 {
-    public Collider2D batCollider;
+    public Collider2D batColliderRight;
+    public Collider2D batColliderLeft;
 
     Vector2 rightAttackOffset;
 
@@ -13,21 +14,20 @@ public class Attacks : MonoBehaviour
 
     private void Start()
     {
-        //rightAttackOffset = transform.position;
+        rightAttackOffset = transform.position;
     }
    
     public void AttackRight()
     {
-        batCollider.enabled = true;
-        //transform.position = rightAttackOffset;
+        batColliderLeft.enabled = true;
     }
     public void AttackLeft()
     {
-        batCollider.enabled = true;
-        //transform.position = new Vector3(rightAttackOffset.x * -1, rightAttackOffset.y);
+        batColliderRight.enabled = true;
     }
     public void StopAttack()
     {
-        batCollider.enabled = false;
+        batColliderRight.enabled = false;
+        batColliderLeft.enabled = false;
     }
 }
