@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour
     public float attackRange = 0.1f;
     public LayerMask enemyLayers;
     [field: SerializeField] private float damageAmount = 50f;
-    [field: SerializeField] private float knockbackForce = 0.005f;
+    [field: SerializeField] private float knockbackForce = 100f;
+    [field: SerializeField] private float playerKnockbackForce = 50f;
 
     Vector2 movementInput;
     SpriteRenderer spriteRenderer;
@@ -191,16 +192,26 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-    
-   /* void OnDash()
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (dashCoolCounter <= 0 && dashCounter <= 0)
+        if (other.gameObject.tag == "damagePlayer")
         {
-            activeMoveSpeed = dashSpeed;
-            dashCounter = dashLength;
+            Vector2 direction = (transform.position - other.gameObject.transform.position).normalized;
+            Vector2 knockback = direction * playerKnockbackForce;
+            TakeDamage(10f, knockback);
         }
-    }*/
+    }
+
+
+    /* void OnDash()
+     {
+         if (dashCoolCounter <= 0 && dashCounter <= 0)
+         {
+             activeMoveSpeed = dashSpeed;
+             dashCounter = dashLength;
+         }
+     }*/
 
 
 
