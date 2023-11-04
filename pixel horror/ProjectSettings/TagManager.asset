@@ -44,3 +44,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Rain Effects
+    uniqueID: 3801937161
+    locked: 0
