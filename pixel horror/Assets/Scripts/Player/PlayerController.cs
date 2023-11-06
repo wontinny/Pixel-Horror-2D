@@ -17,7 +17,10 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField] private float damageAmount = 50f;
     [field: SerializeField] private float knockbackForce = 100f;
     [field: SerializeField] private float playerKnockbackForce = 50f;
-
+    //audio sources for player
+    [SerializeField] private AudioSource dashAudio;
+    [SerializeField] private AudioSource batHitAudio;
+    [SerializeField] private AudioSource walkAudio;
     Vector2 movementInput;
     SpriteRenderer spriteRenderer;
     //how smooth the player moves (kinematic)
@@ -26,10 +29,11 @@ public class PlayerController : MonoBehaviour
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
     //bool canMove = true;
 
+    //variables for the dashing
     private float activeMoveSpeed;
-    public float dashSpeed;
-    public float dashLength = .5f;
-    public float dashCooldown = 1f;
+    public float dashSpeed = 3f;
+    public float dashLength = .2f;
+    public float dashCooldown = 3f;
     private float dashCounter;
     private float dashCoolCounter;
 
@@ -47,14 +51,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (dashCoolCounter <= 0 && dashCounter <= 0)
-            {
-                activeMoveSpeed = dashSpeed;
-                dashCounter = dashLength;
-            }
-        }
+       
         if(dashCounter > 0)
         {
             dashCounter -= Time.deltaTime;
@@ -67,7 +64,7 @@ public class PlayerController : MonoBehaviour
         if (dashCoolCounter > 0)
         {
             dashCoolCounter -= Time.deltaTime;
-        }*/
+        }
     }
 
     private void FixedUpdate()
@@ -85,6 +82,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
             animator.SetBool("isMoving", success);
+            
         }
         else
         {
@@ -102,6 +100,11 @@ public class PlayerController : MonoBehaviour
             
             spriteRenderer.flipX = false;
            
+        }
+       
+        if (movementInput == Vector2.zero)
+        {
+            walkAudio.Play();
         }
     }
 
@@ -133,6 +136,7 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue movementValue)
     {
         movementInput = movementValue.Get<Vector2>();
+        
     }
     
     void OnFire()
@@ -144,6 +148,7 @@ public class PlayerController : MonoBehaviour
             foreach (Collider2D enemy in hitEnemies)
             {
                 //Debug.Log("We hit right" + enemy.name);
+                batHitAudio.Play();
                 Vector2 direction = (enemy.transform.position - rightAttackPoint.position).normalized;
                 Vector2 knockback = direction * knockbackForce;
                 enemy.GetComponent<Enemy>().Damage(damageAmount, knockback);
@@ -156,6 +161,7 @@ public class PlayerController : MonoBehaviour
             foreach (Collider2D enemy in hitEnemies)
             {
                 //Debug.Log("We hit left" + enemy.name);
+                batHitAudio.Play();
                 Vector2 direction = (enemy.transform.position - leftAttackPoint.position).normalized;
                 Vector2 knockback = direction * knockbackForce;
                 enemy.GetComponent<Enemy>().Damage(damageAmount, knockback);
@@ -204,14 +210,16 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    /* void OnDash()
+    void OnDash()
      {
+        
          if (dashCoolCounter <= 0 && dashCounter <= 0)
          {
-             activeMoveSpeed = dashSpeed;
-             dashCounter = dashLength;
+            dashAudio.Play();
+            activeMoveSpeed = dashSpeed;
+            dashCounter = dashLength;
          }
-     }*/
+     }
 
 
 
