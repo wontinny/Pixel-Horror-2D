@@ -2201,6 +2201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1729843450}
   - component: {fileID: 1729843451}
+  - component: {fileID: 1729843452}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -2283,9 +2284,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 903553737}
-        m_TargetAssemblyTypeName: ButtonClick, Assembly-CSharp
-        m_MethodName: playSound
+      - m_Target: {fileID: 1729843452}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: ChangeVolume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2295,6 +2296,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1729843452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729843449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ae6432733861047ae48a2d4c1ab03f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeSlider: {fileID: 1729843451}
 --- !u!1 &1810488052
 GameObject:
   m_ObjectHideFlags: 0
