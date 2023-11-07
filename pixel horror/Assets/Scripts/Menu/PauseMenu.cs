@@ -30,7 +30,8 @@ public class PauseMenu : MonoBehaviour
     }
     public void Controls()
     {
-
+        Time.timeScale = 0f;
+        GameIsPaused = true;
     }
     public void QuitGame()
     {
