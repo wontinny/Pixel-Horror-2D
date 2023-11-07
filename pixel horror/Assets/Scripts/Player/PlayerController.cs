@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -44,6 +45,11 @@ public class PlayerController : MonoBehaviour
 
     public GameOver GameOverScript;
 
+
+    public HealthBar healthBar;                                             //added by Lukas
+
+
+
     void Start()
     {
         CurrentHealth = MaxHealth;
@@ -51,6 +57,9 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         activeMoveSpeed = moveSpeed;
+
+        healthBar.SetMaxHealth(CurrentHealth);                                       //added by Lukas 
+
     }
 
     private void Update()
@@ -196,6 +205,8 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("damage");
         CurrentHealth -= damageAmount;
         rb.AddForce(knockback, ForceMode2D.Impulse);
+
+        healthBar.SetHealth(CurrentHealth);                                              //added by Lukas 
 
         if (CurrentHealth <= 0)
         {
