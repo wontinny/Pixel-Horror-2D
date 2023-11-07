@@ -29,4 +29,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Mansion(Bedrooms).unity
     guid: e677b22e183aaaa469eed296b2a25f37
+  - enabled: 1
+    path: Assets/Scenes/Mansion(BossHall).unity
+    guid: 4f1e21bfc9fd3284281262b1ad88efbc
+  - enabled: 1
+    path: Assets/Scenes/Mansion(BossRoom).unity
+    guid: e491f611c54a79745885b7198de6af51
   m_configObjects: {}
