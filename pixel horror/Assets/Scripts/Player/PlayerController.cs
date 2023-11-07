@@ -40,6 +40,10 @@ public class PlayerController : MonoBehaviour
     public float CurrentHealth;
     [field: SerializeField]  public float MaxHealth = 100f;
 
+    // GameOver script
+
+    public GameOver GameOverScript;
+
     void Start()
     {
         CurrentHealth = MaxHealth;
@@ -195,7 +199,9 @@ public class PlayerController : MonoBehaviour
 
         if (CurrentHealth <= 0)
         {
-            Destroy(gameObject);
+            GameOverScript.Death();
+            walkAudio.Stop();
+            spriteRenderer.enabled = false;
         }
     }
 
