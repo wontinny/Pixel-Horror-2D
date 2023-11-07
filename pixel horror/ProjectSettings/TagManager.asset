@@ -7,6 +7,7 @@ TagManager:
   - Spider
   - damagePlayer
   - mapBorder
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -46,4 +47,7 @@ TagManager:
     locked: 0
   - name: Rain Effects
     uniqueID: 3801937161
+    locked: 0
+  - name: Ghost smoke
+    uniqueID: 4049829569
     locked: 0
