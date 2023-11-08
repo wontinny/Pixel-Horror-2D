@@ -11,7 +11,7 @@ public class DomainExpansion : MonoBehaviour
     [SerializeField] private GameObject TransformationDialogue;
 
     [Header ("Transformation Effects")]
-    [SerializeField] private AudioSource domainSound;
+    [SerializeField] private AudioSource bossMusic;
     [SerializeField] private GameObject panCamera;
 
     [Header ("Domain Map")]
@@ -28,7 +28,6 @@ public class DomainExpansion : MonoBehaviour
         if (enemyScript.CurrentHealth <= 90 && DomainExpanded == false)
         {
             DomainExpanded = true;
-            domainSound.Play();
             StartCoroutine(TimeDelay());
         }
     }
@@ -54,7 +53,7 @@ public class DomainExpansion : MonoBehaviour
         DomainF.SetActive(true);
         panCamera.SetActive(false);
         enemyScript.enabled = true;
-
+        bossMusic.Play();
     }
 
     public void Update()
