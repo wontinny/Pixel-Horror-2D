@@ -6,8 +6,15 @@ using Cinemachine;
 public class DomainExpansion : MonoBehaviour
 {
     public Enemy enemyScript;
+
+    [Header ("Dialogue")]
+    [SerializeField] private GameObject TransformationDialogue;
+
+    [Header ("Transformation Effects")]
     [SerializeField] private AudioSource domainSound;
     [SerializeField] private GameObject panCamera;
+
+    [Header ("Domain Map")]
     [SerializeField] private GameObject DomainA;
     [SerializeField] private GameObject DomainB;
     [SerializeField] private GameObject DomainC;
@@ -32,7 +39,8 @@ public class DomainExpansion : MonoBehaviour
         yield return new WaitForSeconds(1f); // Delay to let the Player's knockback affect Mary
         gameObject.transform.position = new Vector2(0.15f, -0.25f); 
         panCamera.SetActive(true);
-        yield return new WaitForSeconds(3);
+        TransformationDialogue.SetActive(true);
+        yield return new WaitForSeconds(11);
         DomainA.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         DomainB.SetActive(true);
