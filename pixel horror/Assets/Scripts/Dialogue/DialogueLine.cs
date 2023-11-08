@@ -16,6 +16,7 @@ namespace DialogueSystem
 
         [Header("Time Parameters")]
         [SerializeField] private float delay;
+        [SerializeField] private float delayBetweenLines;
 
         [Header("Sound")]
         [SerializeField] private AudioSource sound;
@@ -23,8 +24,12 @@ namespace DialogueSystem
         private void Awake()
         {
             textHolder = GetComponent<Text>();
+            textHolder.text = "";
+        }
 
-            StartCoroutine(WriteText(input, textHolder, textColor, textFont, delay, sound));
+        private void Start()
+        {
+            StartCoroutine(WriteText(input, textHolder, textColor, textFont, delay, sound, delayBetweenLines));
         }
     }
 
