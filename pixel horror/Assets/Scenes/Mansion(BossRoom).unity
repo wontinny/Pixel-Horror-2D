@@ -81111,7 +81111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4599547275ac6b448c441314c98f34a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: ' Behold as I transcend this guise and become your living nightmare.'
+  input: Behold as I transcend this guise and become your living nightmare.
   textColor: {r: 1, g: 1, b: 1, a: 1}
   textFont: {fileID: 12800000, guid: c5de23f836f194743a4ef53fbf61e724, type: 3}
   delay: 0.075
