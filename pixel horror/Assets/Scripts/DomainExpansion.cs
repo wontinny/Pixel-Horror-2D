@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class DomainExpansion : MonoBehaviour
 {
     public Enemy enemyScript;
     [SerializeField] private AudioSource domainSound;
+    [SerializeField] private GameObject panCamera;
 
     bool DomainExpanded = false;
     private void HealthCheck()
@@ -15,16 +17,10 @@ public class DomainExpansion : MonoBehaviour
             DomainExpanded = true;
             domainSound.Play();
             gameObject.transform.position = new Vector2(0.15f, -0.25f); 
-            Time.timeScale = 0f;
-            StartCoroutine(TimeFreeze());
-            Time.timeScale = 1f;
+            panCamera.SetActive(true);
         }
     }
 
-    IEnumerator TimeFreeze()
-    {
-        yield return new WaitForSeconds(2);
-    }
     public void Update()
     {
         HealthCheck();

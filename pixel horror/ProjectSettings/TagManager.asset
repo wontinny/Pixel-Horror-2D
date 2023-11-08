@@ -8,6 +8,8 @@ TagManager:
   - damagePlayer
   - mapBorder
   - Item
+  - MaryCamera
+  - Pages
   layers:
   - Default
   - TransparentFX
