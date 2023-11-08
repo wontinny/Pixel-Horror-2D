@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 1f;
@@ -118,6 +119,10 @@ public class PlayerController : MonoBehaviour
         if (movementInput == Vector2.zero)
         {
             walkAudio.Play();
+        }
+        if (PauseMenu.GameIsPaused)
+        {
+            walkAudio.pitch *= 0;
         }
     }
 
