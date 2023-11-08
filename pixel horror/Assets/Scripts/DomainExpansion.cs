@@ -17,10 +17,16 @@ public class DomainExpansion : MonoBehaviour
             DomainExpanded = true;
             domainSound.Play();
             gameObject.transform.position = new Vector2(0.15f, -0.25f); 
-            panCamera.SetActive(true);
+            StartCoroutine(TimeDelay());
         }
     }
 
+    IEnumerator TimeDelay()
+    {
+        panCamera.SetActive(true);
+        yield return new WaitForSeconds(5);
+        panCamera.SetActive(false);
+    }
     public void Update()
     {
         HealthCheck();
