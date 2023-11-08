@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
     public Rigidbody2D RB { get; set; }
     public bool IsFacingRight { get; set; } = true;
     [field: SerializeField] public float MaxHealth { get; set; } = 100f;
-    public float CurrentHealth { get; set; }
+    [field: SerializeField] public float CurrentHealth { get; set; }
     public bool IsAggroed { get; set; }
     public bool IsWithinStrikingDistance {  get; set; }
     public bool isHit { get; set; }
