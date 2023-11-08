@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 5842568501864898302}
-  timetoStop: 0.25
+  timetoStop: 0.5
   theGhost: {fileID: 5238085091879759900, guid: b70bbfb7fc3f78f429dda24e53bab485, type: 3}
 --- !u!1 &5842568501864898302
 GameObject:

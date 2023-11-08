@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7760851017799762786, guid: 34e4c7e21eea57c45ac79e52a60ba8ef, type: 3}
   speed: 0.5
-  TimeTillDeath: 5
+  TimeTillDeath: 7
 --- !u!70 &6773327614165698589
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
