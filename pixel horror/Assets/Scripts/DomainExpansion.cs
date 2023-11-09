@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.Rendering.Universal;
 
 public class DomainExpansion : MonoBehaviour
 {
     public Enemy enemyScript;
+
+    [Header ("Boss Health Bar")]
+    public HealthBar bossBar;
+    public GameObject bossBarUI;
 
     [Header ("Dialogue")]
     [SerializeField] private GameObject TransformationDialogue;
@@ -22,19 +27,31 @@ public class DomainExpansion : MonoBehaviour
     [SerializeField] private GameObject DomainE;
     [SerializeField] private GameObject DomainF;
 
+    [Header ("Enemy Spawner")]
+    [SerializeField] private AudioSource spawnSound;
+    public GameObject enemyPrefab;
+    private float distance = 0.5f;
+    float spawnTime = 25f;
+    bool spawning = false;
+
+    [Header ("Light Effect")]
+    [SerializeField] private Light2D Light;
+
     bool DomainExpanded = false;
+
     private void HealthCheck()
     {
-        if (enemyScript.CurrentHealth <= 90 && DomainExpanded == false)
+        if (enemyScript.CurrentHealth <= 100 && DomainExpanded == false)
         {
+            enemyScript.enabled = false;
             DomainExpanded = true;
             StartCoroutine(TimeDelay());
         }
     }
 
     IEnumerator TimeDelay()
-    {        
-        enemyScript.enabled = false;
+    {               
+        bossBarUI.SetActive(false);
         yield return new WaitForSeconds(1f); // Delay to let the Player's knockback affect Mary
         gameObject.transform.position = new Vector2(0.15f, -0.25f); 
         panCamera.SetActive(true);
@@ -53,11 +70,60 @@ public class DomainExpansion : MonoBehaviour
         DomainF.SetActive(true);
         panCamera.SetActive(false);
         enemyScript.enabled = true;
+        spawning = true;
         bossMusic.Play();
+        yield return new WaitForSeconds(2f);
+        bossBarUI.SetActive(true);
+        while (enemyScript.CurrentHealth < enemyScript.MaxHealth)
+        {
+            yield return new WaitForSeconds(0.01f);
+            enemyScript.CurrentHealth += 2;
+        }
+    }
+
+    IEnumerator WaitForMobs() 
+    {
+        enemyScript.enabled = false;
+        yield return new WaitForSeconds(1f);
+        enemyScript.enabled = true;
+    }
+
+    void SpawnMobs()
+    {
+        if (spawnTime > 0)
+        {
+            spawnTime -= Time.deltaTime;
+        }
+        if (spawning && (spawnTime <= 0)) 
+        {
+            StartCoroutine(WaitForMobs());
+            spawnSound.Play();
+            Instantiate(enemyPrefab, new Vector2(transform.position.x + distance, transform.position.y), transform.rotation);
+            Instantiate(enemyPrefab, new Vector2(transform.position.x + - distance, transform.position.y), transform.rotation);
+            Instantiate(enemyPrefab, new Vector2(transform.position.x, transform.position.y + distance), transform.rotation);
+            Instantiate(enemyPrefab, new Vector2(transform.position.x, transform.position.y - distance), transform.rotation);
+            spawnTime = 25f;
+        }
+    }
+
+    public void Start()
+    {
+        bossBar.SetMaxHealth(enemyScript.CurrentHealth);
     }
 
     public void Update()
     {
+        bossBar.SetHealth(enemyScript.CurrentHealth);
+
         HealthCheck();
+        
+        SpawnMobs();
+        
+        if (DomainExpanded)
+        {
+            Light.intensity = Mathf.PingPong(Time.time, 4f);
+        }
+
     }
+
 }
