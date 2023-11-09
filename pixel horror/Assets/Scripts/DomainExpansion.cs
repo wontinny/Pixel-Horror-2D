@@ -88,7 +88,7 @@ public class DomainExpansion : MonoBehaviour
             Instantiate(enemyPrefab, new Vector2(transform.position.x + - distance, transform.position.y), transform.rotation);
             Instantiate(enemyPrefab, new Vector2(transform.position.x, transform.position.y + distance), transform.rotation);
             Instantiate(enemyPrefab, new Vector2(transform.position.x, transform.position.y - distance), transform.rotation);
-            spawnTime = 10f;
+            spawnTime = 25f;
         }
     }
 
@@ -97,9 +97,9 @@ public class DomainExpansion : MonoBehaviour
         HealthCheck();
         
         SpawnMobs();
-        if (spawning) {
-            Light.intensity = Mathf.PingPong(Time.time, 1f);
-        }
+        
+        Light.intensity = Mathf.PingPong(Time.time, 4f);
+
     }
 
 }

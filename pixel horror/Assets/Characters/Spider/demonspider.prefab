@@ -5036,7 +5036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae2dfb4c01f23a4fba0f3810ded7ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 100
+  <MaxHealth>k__BackingField: 50
   <CurrentHealth>k__BackingField: 0
   spiderWeb: {fileID: 693767550729383252, guid: cdf56118a5bb9f543ba98ec92bd18717, type: 3}
   RandomMovementRange: 1
