@@ -24,6 +24,7 @@ public class DomainExpansion : MonoBehaviour
     [SerializeField] private GameObject DomainF;
 
     [Header ("Enemy Spawner")]
+    [SerializeField] private AudioSource spawnSound;
     public GameObject enemyPrefab;
     private float distance = 0.5f;
     float spawnTime = 25f;
@@ -84,6 +85,7 @@ public class DomainExpansion : MonoBehaviour
         if (spawning && (spawnTime <= 0)) 
         {
             StartCoroutine(WaitForMobs());
+            spawnSound.Play();
             Instantiate(enemyPrefab, new Vector2(transform.position.x + distance, transform.position.y), transform.rotation);
             Instantiate(enemyPrefab, new Vector2(transform.position.x + - distance, transform.position.y), transform.rotation);
             Instantiate(enemyPrefab, new Vector2(transform.position.x, transform.position.y + distance), transform.rotation);
@@ -98,7 +100,10 @@ public class DomainExpansion : MonoBehaviour
         
         SpawnMobs();
         
-        Light.intensity = Mathf.PingPong(Time.time, 4f);
+        if (DomainExpanded)
+        {
+            Light.intensity = Mathf.PingPong(Time.time, 4f);
+        }
 
     }
 
