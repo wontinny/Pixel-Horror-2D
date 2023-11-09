@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     private float dashCoolCounter;
 
     public float CurrentHealth;
-    [field: SerializeField]  public float MaxHealth = 100f;
+    [field: SerializeField] public float MaxHealth = 100f;
 
     // GameOver script
 
@@ -65,8 +65,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-       
-        if(dashCounter > 0)
+
+        if (dashCounter > 0)
         {
             dashCounter -= Time.deltaTime;
             if (dashCounter <= 0)
@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(movementInput != Vector2.zero)
+        if (movementInput != Vector2.zero)
         {
             bool success = TryMove(movementInput);
             if (!success)
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
             animator.SetBool("isMoving", success);
-            
+
         }
         else
         {
@@ -105,17 +105,17 @@ public class PlayerController : MonoBehaviour
 
         if (movementInput.x < 0)
         {
-            
+
             spriteRenderer.flipX = true;
-        
+
         }
         else if (movementInput.x > 0)
         {
-            
+
             spriteRenderer.flipX = false;
-           
+
         }
-       
+
         if (movementInput == Vector2.zero)
         {
             walkAudio.Play();
@@ -154,9 +154,9 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue movementValue)
     {
         movementInput = movementValue.Get<Vector2>();
-        
+
     }
-    
+
     void OnFire()
     {
         animator.SetTrigger("batAttack");
@@ -186,7 +186,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    
+
     public void batAttack()
     {
         if (spriteRenderer.flipX != true)
@@ -229,19 +229,24 @@ public class PlayerController : MonoBehaviour
             Vector2 knockback = direction * playerKnockbackForce;
             TakeDamage(10f, knockback);
         }
+        if (other.gameObject.tag == "Item")                                                             //Added by Lukas
+        {
+            Heal(25);
+            Destroy(other.gameObject);
+        }
     }
 
 
     void OnDash()
-     {
-        
-         if (dashCoolCounter <= 0 && dashCounter <= 0)
-         {
+    {
+
+        if (dashCoolCounter <= 0 && dashCounter <= 0)
+        {
             dashAudio.Play();
             activeMoveSpeed = dashSpeed;
             dashCounter = dashLength;
-         }
-     }
+        }
+    }
 
 
 
@@ -254,4 +259,26 @@ public class PlayerController : MonoBehaviour
     {
         canMove = true;
     }*/
+
+
+    public void Heal(float heal)
+    {
+        CurrentHealth += heal;
+        
+        if(CurrentHealth > MaxHealth)
+        {
+            CurrentHealth = MaxHealth;
+            healthBar.SetHealth(CurrentHealth);
+        }
+        else
+        {
+            healthBar.SetHealth(CurrentHealth);
+        }
+    }
+
 }
+
+
+
+
+
