@@ -347,7 +347,6 @@ GameObject:
   - component: {fileID: 4079988355463406912}
   - component: {fileID: 7059363637777089892}
   - component: {fileID: 5936485077831435472}
-  - component: {fileID: 2377515610165613412}
   - component: {fileID: 70859957360771857}
   - component: {fileID: 6279781547825169833}
   - component: {fileID: 1476239477052059438}
@@ -507,7 +506,7 @@ MonoBehaviour:
   bossBarUI: {fileID: 0}
   TransformationDialogue: {fileID: 0}
   bossMusic: {fileID: 748971058}
-  panCamera: {fileID: 2011562149}
+  panCamera: {fileID: 0}
   DomainA: {fileID: 0}
   DomainB: {fileID: 0}
   DomainC: {fileID: 0}
@@ -532,7 +531,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.514
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -806,22 +805,6 @@ MonoBehaviour:
   bulletsAmount: 24
   startAngle: 0
   endAngle: 360
---- !u!58 &2377515610165613412
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2377515610165613434}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.008958697, y: -0.039184973}
-  serializedVersion: 2
-  m_Radius: 0.10695386
 --- !u!114 &70859957360771857
 MonoBehaviour:
   m_ObjectHideFlags: 0
