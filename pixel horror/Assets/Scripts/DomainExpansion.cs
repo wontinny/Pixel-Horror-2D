@@ -41,8 +41,9 @@ public class DomainExpansion : MonoBehaviour
 
     private void HealthCheck()
     {
-        if (enemyScript.CurrentHealth <= 90 && DomainExpanded == false)
+        if (enemyScript.CurrentHealth <= 100 && DomainExpanded == false)
         {
+            enemyScript.enabled = false;
             DomainExpanded = true;
             StartCoroutine(TimeDelay());
         }
@@ -51,7 +52,6 @@ public class DomainExpansion : MonoBehaviour
     IEnumerator TimeDelay()
     {               
         bossBarUI.SetActive(false);
-        enemyScript.enabled = false;
         yield return new WaitForSeconds(1f); // Delay to let the Player's knockback affect Mary
         gameObject.transform.position = new Vector2(0.15f, -0.25f); 
         panCamera.SetActive(true);
@@ -74,6 +74,11 @@ public class DomainExpansion : MonoBehaviour
         bossMusic.Play();
         yield return new WaitForSeconds(2f);
         bossBarUI.SetActive(true);
+        while (enemyScript.CurrentHealth < enemyScript.MaxHealth)
+        {
+            yield return new WaitForSeconds(0.01f);
+            enemyScript.CurrentHealth += 2;
+        }
     }
 
     IEnumerator WaitForMobs() 
