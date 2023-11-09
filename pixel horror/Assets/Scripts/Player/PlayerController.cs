@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 1f;
-    public float collisionOffset = 0.02f;
+    public float collisionOffset = 0.01f;
     public ContactFilter2D movementFilter;
 
     public Attacks BatAttack;
@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource dashAudio;
     [SerializeField] private AudioSource batHitAudio;
     [SerializeField] private AudioSource walkAudio;
+    Vector2 instance;
     Vector2 movementInput;
     SpriteRenderer spriteRenderer;
     //how smooth the player moves (kinematic)
@@ -191,11 +192,11 @@ public class PlayerController : MonoBehaviour
     {
         if (spriteRenderer.flipX != true)
         {
-            BatAttack.AttackLeft();
+            BatAttack.AttackRight();
         }
         else
         {
-            BatAttack.AttackRight();
+            BatAttack.AttackLeft();
         }
     }
 
@@ -220,6 +221,8 @@ public class PlayerController : MonoBehaviour
             spriteRenderer.enabled = false;
         }
     }
+
+ 
 
     private void OnTriggerEnter2D(Collider2D other)
     {
