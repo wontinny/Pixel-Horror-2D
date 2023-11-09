@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
     public HealthBar healthBar;                                             //added by Lukas
 
+    public PlayerInput inputScript;
 
 
     void Start()
@@ -60,6 +61,8 @@ public class PlayerController : MonoBehaviour
         activeMoveSpeed = moveSpeed;
 
         healthBar.SetMaxHealth(CurrentHealth);                                       //added by Lukas 
+
+        inputScript = GetComponent<PlayerInput>();
 
     }
 
@@ -209,6 +212,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isMoving", false);
         animator.SetTrigger("damage");
         CurrentHealth -= damageAmount;
+        StartCoroutine(StopInput());
         rb.AddForce(knockback, ForceMode2D.Impulse); // removed until it gets reworked
 
         healthBar.SetHealth(CurrentHealth);                                              //added by Lukas 
@@ -219,6 +223,13 @@ public class PlayerController : MonoBehaviour
             walkAudio.Stop();
             spriteRenderer.enabled = false;
         }
+    }
+
+    IEnumerator StopInput()
+    {
+        inputScript.enabled = false;
+        yield return new WaitForSeconds(0.8f);
+        inputScript.enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

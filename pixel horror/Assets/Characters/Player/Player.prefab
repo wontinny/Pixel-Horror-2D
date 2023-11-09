@@ -469,6 +469,7 @@ MonoBehaviour:
   MaxHealth: 100
   GameOverScript: {fileID: 0}
   healthBar: {fileID: 0}
+  inputScript: {fileID: 0}
 --- !u!50 &4033040181907396742
 Rigidbody2D:
   serializedVersion: 4
