@@ -103,11 +103,6 @@ public class DomainExpansion : MonoBehaviour
             Instantiate(enemyPrefab, new Vector2(transform.position.x + - distance, transform.position.y), transform.rotation);
             Instantiate(enemyPrefab, new Vector2(transform.position.x, transform.position.y + distance), transform.rotation);
             Instantiate(enemyPrefab, new Vector2(transform.position.x, transform.position.y - distance), transform.rotation);
-            Instantiate(ghostPrefab, new Vector2(transform.position.x + distance, transform.position.y), transform.rotation);
-            Instantiate(ghostPrefab, new Vector2(transform.position.x + -distance, transform.position.y), transform.rotation);
-            Instantiate(ghostPrefab, new Vector2(transform.position.x, transform.position.y + distance), transform.rotation);
-            Instantiate(ghostPrefab, new Vector2(transform.position.x, transform.position.y - distance), transform.rotation);
-
             spawnTime = 25f;
         }
     }
