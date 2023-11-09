@@ -8,8 +8,9 @@ public class DomainExpansion : MonoBehaviour
 {
     public Enemy enemyScript;
 
-    [Header ("Dialogue")]
+    [Header ("Boss Health Bar")]
     public HealthBar bossBar;
+    public GameObject bossBarUI;
 
     [Header ("Dialogue")]
     [SerializeField] private GameObject TransformationDialogue;
@@ -49,6 +50,7 @@ public class DomainExpansion : MonoBehaviour
 
     IEnumerator TimeDelay()
     {               
+        bossBarUI.SetActive(false);
         enemyScript.enabled = false;
         yield return new WaitForSeconds(1f); // Delay to let the Player's knockback affect Mary
         gameObject.transform.position = new Vector2(0.15f, -0.25f); 
@@ -70,6 +72,8 @@ public class DomainExpansion : MonoBehaviour
         enemyScript.enabled = true;
         spawning = true;
         bossMusic.Play();
+        yield return new WaitForSeconds(2f);
+        bossBarUI.SetActive(true);
     }
 
     IEnumerator WaitForMobs() 
