@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.Rendering.Universal;
 
 public class DomainExpansion : MonoBehaviour
 {
@@ -22,7 +23,17 @@ public class DomainExpansion : MonoBehaviour
     [SerializeField] private GameObject DomainE;
     [SerializeField] private GameObject DomainF;
 
+    [Header ("Enemy Spawner")]
+    public GameObject enemyPrefab;
+    private float distance = 0.5f;
+    float spawnTime = 25f;
+    bool spawning = false;
+
+    [Header ("Light Effect")]
+    [SerializeField] private Light2D Light;
+
     bool DomainExpanded = false;
+
     private void HealthCheck()
     {
         if (enemyScript.CurrentHealth <= 90 && DomainExpanded == false)
@@ -33,7 +44,7 @@ public class DomainExpansion : MonoBehaviour
     }
 
     IEnumerator TimeDelay()
-    {        
+    {               
         enemyScript.enabled = false;
         yield return new WaitForSeconds(1f); // Delay to let the Player's knockback affect Mary
         gameObject.transform.position = new Vector2(0.15f, -0.25f); 
@@ -53,11 +64,42 @@ public class DomainExpansion : MonoBehaviour
         DomainF.SetActive(true);
         panCamera.SetActive(false);
         enemyScript.enabled = true;
+        spawning = true;
         bossMusic.Play();
+    }
+
+    IEnumerator WaitForMobs() 
+    {
+        enemyScript.enabled = false;
+        yield return new WaitForSeconds(1f);
+        enemyScript.enabled = true;
+    }
+
+    void SpawnMobs()
+    {
+        if (spawnTime > 0)
+        {
+            spawnTime -= Time.deltaTime;
+        }
+        if (spawning && (spawnTime <= 0)) 
+        {
+            StartCoroutine(WaitForMobs());
+            Instantiate(enemyPrefab, new Vector2(transform.position.x + distance, transform.position.y), transform.rotation);
+            Instantiate(enemyPrefab, new Vector2(transform.position.x + - distance, transform.position.y), transform.rotation);
+            Instantiate(enemyPrefab, new Vector2(transform.position.x, transform.position.y + distance), transform.rotation);
+            Instantiate(enemyPrefab, new Vector2(transform.position.x, transform.position.y - distance), transform.rotation);
+            spawnTime = 10f;
+        }
     }
 
     public void Update()
     {
         HealthCheck();
+        
+        SpawnMobs();
+        if (spawning) {
+            Light.intensity = Mathf.PingPong(Time.time, 1f);
+        }
     }
+
 }
