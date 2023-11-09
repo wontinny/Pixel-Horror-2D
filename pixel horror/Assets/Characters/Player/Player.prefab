@@ -217,7 +217,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.25, y: 0}
+  m_Offset: {x: -0.23, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -417,7 +417,6 @@ MonoBehaviour:
   CurrentHealth: 0
   MaxHealth: 100
   GameOverScript: {fileID: 0}
-  healthBar: {fileID: 0}
 --- !u!50 &4033040181907396742
 Rigidbody2D:
   serializedVersion: 4
