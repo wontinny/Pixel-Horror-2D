@@ -9,6 +9,9 @@ public class DomainExpansion : MonoBehaviour
     public Enemy enemyScript;
 
     [Header ("Dialogue")]
+    public HealthBar bossBar;
+
+    [Header ("Dialogue")]
     [SerializeField] private GameObject TransformationDialogue;
 
     [Header ("Transformation Effects")]
@@ -94,8 +97,15 @@ public class DomainExpansion : MonoBehaviour
         }
     }
 
+    public void Start()
+    {
+        bossBar.SetMaxHealth(enemyScript.CurrentHealth);
+    }
+
     public void Update()
     {
+        bossBar.SetHealth(enemyScript.CurrentHealth);
+
         HealthCheck();
         
         SpawnMobs();
