@@ -229,6 +229,11 @@ public class PlayerController : MonoBehaviour
             Vector2 knockback = direction * playerKnockbackForce;
             TakeDamage(10f, knockback);
         }
+        if (other.gameObject.tag == "Item")
+        {
+            Heal(25);
+            Destroy(other.gameObject);
+        }
     }
 
 
@@ -254,4 +259,20 @@ public class PlayerController : MonoBehaviour
     {
         canMove = true;
     }*/
+
+    public void Heal(float heal)
+    {
+        CurrentHealth += 25;
+
+        if (CurrentHealth > MaxHealth)
+        {
+            CurrentHealth = MaxHealth;
+            healthBar.SetHealth(CurrentHealth);
+        }
+        else
+        {
+            healthBar.SetHealth(CurrentHealth);
+        }
+    }
+
 }
