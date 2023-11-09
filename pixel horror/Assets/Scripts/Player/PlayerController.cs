@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public float attackRange = 0.1f;
     public LayerMask enemyLayers;
     [field: SerializeField] private float damageAmount = 50f;
-    [field: SerializeField] private float knockbackForce = 75f;
+    [field: SerializeField] private float knockbackForce = 50f;
     [field: SerializeField] private float playerKnockbackForce = 50f;
     //audio sources for player
     [SerializeField] private AudioSource dashAudio;
