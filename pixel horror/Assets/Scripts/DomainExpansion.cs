@@ -30,6 +30,7 @@ public class DomainExpansion : MonoBehaviour
     [Header ("Enemy Spawner")]
     [SerializeField] private AudioSource spawnSound;
     public GameObject enemyPrefab;
+    public GameObject ghostPrefab;
     private float distance = 0.5f;
     float spawnTime = 25f;
     bool spawning = false;
@@ -102,6 +103,11 @@ public class DomainExpansion : MonoBehaviour
             Instantiate(enemyPrefab, new Vector2(transform.position.x + - distance, transform.position.y), transform.rotation);
             Instantiate(enemyPrefab, new Vector2(transform.position.x, transform.position.y + distance), transform.rotation);
             Instantiate(enemyPrefab, new Vector2(transform.position.x, transform.position.y - distance), transform.rotation);
+            Instantiate(ghostPrefab, new Vector2(transform.position.x + distance, transform.position.y), transform.rotation);
+            Instantiate(ghostPrefab, new Vector2(transform.position.x + -distance, transform.position.y), transform.rotation);
+            Instantiate(ghostPrefab, new Vector2(transform.position.x, transform.position.y + distance), transform.rotation);
+            Instantiate(ghostPrefab, new Vector2(transform.position.x, transform.position.y - distance), transform.rotation);
+
             spawnTime = 25f;
         }
     }

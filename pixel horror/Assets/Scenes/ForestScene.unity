@@ -560,44 +560,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2964627620262212057, guid: 34e4c7e21eea57c45ac79e52a60ba8ef, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2964627620262212057, guid: 34e4c7e21eea57c45ac79e52a60ba8ef, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3006014030666867602, guid: 34e4c7e21eea57c45ac79e52a60ba8ef, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-    - target: {fileID: 4033040181907396742, guid: 34e4c7e21eea57c45ac79e52a60ba8ef, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7760851017799762786, guid: 34e4c7e21eea57c45ac79e52a60ba8ef, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7760851017799762786, guid: 34e4c7e21eea57c45ac79e52a60ba8ef, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8920694569408378152, guid: 34e4c7e21eea57c45ac79e52a60ba8ef, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 656459096}
     - target: {fileID: 8920694569408378152, guid: 34e4c7e21eea57c45ac79e52a60ba8ef, type: 3}
-      propertyPath: walkAudio
-      value: 
-      objectReference: {fileID: 1815049528}
-    - target: {fileID: 8920694569408378152, guid: 34e4c7e21eea57c45ac79e52a60ba8ef, type: 3}
       propertyPath: GameOverScript
       value: 
       objectReference: {fileID: 1813227950}
-    m_RemovedComponents:
-    - {fileID: 8448295305680796170, guid: 34e4c7e21eea57c45ac79e52a60ba8ef, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34e4c7e21eea57c45ac79e52a60ba8ef, type: 3}
 --- !u!1 &119481651
 GameObject:
@@ -1807,7 +1782,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 1660491692526021005, guid: d4abad27d054ca045bce09fff8939dc7, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1660491692526021005, guid: d4abad27d054ca045bce09fff8939dc7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7472,7 +7447,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 1660491692526021005, guid: d4abad27d054ca045bce09fff8939dc7, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1660491692526021005, guid: d4abad27d054ca045bce09fff8939dc7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -64689,11 +64664,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &1815049528 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2540331653437483292, guid: 34e4c7e21eea57c45ac79e52a60ba8ef, type: 3}
-  m_PrefabInstance: {fileID: 76181500}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1822554330
 GameObject:
   m_ObjectHideFlags: 0
@@ -64740,27 +64710,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1837892812 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7568349627497478180, guid: 34e4c7e21eea57c45ac79e52a60ba8ef, type: 3}
-  m_PrefabInstance: {fileID: 76181500}
-  m_PrefabAsset: {fileID: 0}
---- !u!70 &1837892814
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1837892812}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0064425706, y: -0.06207993}
-  m_Size: {x: 0.04196834, y: 0.047513243}
-  m_Direction: 0
 --- !u!43 &2089992617
 Mesh:
   m_ObjectHideFlags: 0
