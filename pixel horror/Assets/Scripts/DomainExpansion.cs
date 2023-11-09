@@ -30,6 +30,7 @@ public class DomainExpansion : MonoBehaviour
     [Header ("Enemy Spawner")]
     [SerializeField] private AudioSource spawnSound;
     public GameObject enemyPrefab;
+    public GameObject ghostPrefab;
     private float distance = 0.5f;
     float spawnTime = 25f;
     bool spawning = false;

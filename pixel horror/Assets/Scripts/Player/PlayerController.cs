@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     Vector2 movementInput;
     SpriteRenderer spriteRenderer;
     //how smooth the player moves (kinematic)
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     Animator animator;
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
     //bool canMove = true;
@@ -209,7 +209,7 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isMoving", false);
         animator.SetTrigger("damage");
         CurrentHealth -= damageAmount;
-        rb.AddForce(knockback, ForceMode2D.Impulse);
+        rb.AddForce(knockback, ForceMode2D.Impulse); // removed until it gets reworked
 
         healthBar.SetHealth(CurrentHealth);                                              //added by Lukas 
 
