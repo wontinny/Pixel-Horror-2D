@@ -3,7 +3,19 @@ guid: 3b42e7f0c6aa19b4a8cf5b301b1421b5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - BatAttack: {instanceID: 0}
+  - rightAttackPoint: {instanceID: 0}
+  - leftAttackPoint: {instanceID: 0}
+  - dashAudio: {instanceID: 0}
+  - batHitAudio: {instanceID: 0}
+  - walkAudio: {instanceID: 0}
+  - rb: {instanceID: 0}
+  - GameOverScript: {instanceID: 0}
+  - healthBar: {instanceID: 0}
+  - inputScript: {instanceID: 0}
+  - healthObject: {fileID: 11400000, guid: 88c41dd7ade8f47499d7d7e023353fe6, type: 2}
+  - bookCount: {fileID: 11400000, guid: d3b530f898c073c4e9a55f6f600226c9, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
