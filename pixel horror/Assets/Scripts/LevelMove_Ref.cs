@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelMove_Ref : MonoBehaviour
 {
     public int sceneBuildIndex;
+    //[SerializeField] float keepHealth;              // Added LG
 
     // Level move zoned enter, if collider is a player
     // Move game to another scene
@@ -18,8 +19,10 @@ public class LevelMove_Ref : MonoBehaviour
         if (other.tag == "Player")
         {
             // Player entered, so move level
+            //keepHealth = 20;
             print("Switching Scene to " + sceneBuildIndex);
             SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
+            //PlayerController.changeHealth(keepHealth);
         }
     }
 }

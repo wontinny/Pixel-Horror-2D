@@ -51,16 +51,38 @@ public class PlayerController : MonoBehaviour
 
     public PlayerInput inputScript;
 
+    public TestScriptableObject healthObject;
+
+    public TestScriptableObject bookCount;
+    public float startBookCount = 0;
+    public float currentBooks;
+
 
     void Start()
     {
-        CurrentHealth = MaxHealth;
+        if (healthObject.currHealth <= 0)
+                {
+                    healthObject.changeCurrHealth(MaxHealth);
+                }
+        CurrentHealth = healthObject.currHealth;                // Changed from maxhealth to health object LG
+
+        if (bookCount.currHealth > 0)
+        {
+            currentBooks = bookCount.currHealth;
+            //set ui of book count to currentBooks
+        }
+        else
+        {
+            bookCount.changeCurrHealth(startBookCount);
+        }
+
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         activeMoveSpeed = moveSpeed;
 
-        healthBar.SetMaxHealth(CurrentHealth);                                       //added by Lukas 
+        healthBar.SetMaxHealth(MaxHealth);                                       //added by Lukas 
+        healthBar.SetHealth(CurrentHealth);
 
         inputScript = GetComponent<PlayerInput>();
 
@@ -215,7 +237,9 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(StopInput());
         rb.AddForce(knockback, ForceMode2D.Impulse); // removed until it gets reworked
 
+        healthObject.changeCurrHealth(CurrentHealth);
         healthBar.SetHealth(CurrentHealth);                                              //added by Lukas 
+
 
         if (CurrentHealth <= 0)
         {
@@ -243,6 +267,13 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Item")
         {
             Heal(25);
+            healthObject.changeCurrHealth(CurrentHealth);
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.tag == "Pages")
+        {
+            currentBooks += 1;
+            bookCount.changeCurrHealth(currentBooks);
             Destroy(other.gameObject);
         }
     }

@@ -249,7 +249,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1.5
+  orthographic size: 1.3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -273,7 +273,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197587281}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3707011, y: 0.06955874, z: -10}
+  m_LocalPosition: {x: -2.258, y: -0.078, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -72778,6 +72778,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8920694569408378152, guid: 34e4c7e21eea57c45ac79e52a60ba8ef, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1782038527}
+    - target: {fileID: 8920694569408378152, guid: 34e4c7e21eea57c45ac79e52a60ba8ef, type: 3}
+      propertyPath: healthObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 88c41dd7ade8f47499d7d7e023353fe6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34e4c7e21eea57c45ac79e52a60ba8ef, type: 3}
 --- !u!1 &1673712665
