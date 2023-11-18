@@ -3,10 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
+
+
+
 {
+
+    public TestScriptableObject healthObject;
+
+    public TestScriptableObject bookCount;
+
     public void PlayGame()
     {
         StartCoroutine(WaitForAnimation());
+        healthObject.changeCurrHealth(100);
+        bookCount.changeCurrHealth(0);
     }
 
     IEnumerator WaitForAnimation()

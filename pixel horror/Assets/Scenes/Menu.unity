@@ -725,6 +725,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8685bc8bf5394024cae25ad6c7b1120e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthObject: {fileID: 11400000, guid: 88c41dd7ade8f47499d7d7e023353fe6, type: 2}
+  bookCount: {fileID: 11400000, guid: d3b530f898c073c4e9a55f6f600226c9, type: 2}
 --- !u!1 &440020441
 GameObject:
   m_ObjectHideFlags: 0
