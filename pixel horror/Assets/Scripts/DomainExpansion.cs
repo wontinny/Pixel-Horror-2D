@@ -53,6 +53,7 @@ public class DomainExpansion : MonoBehaviour
     IEnumerator TimeDelay()
     {               
         bossBarUI.SetActive(false);
+        enemyScript.CurrentHealth = 50000;
         yield return new WaitForSeconds(1f); // Delay to let the Player's knockback affect Mary
         gameObject.transform.position = new Vector2(0.15f, -0.25f); 
         panCamera.SetActive(true);
@@ -74,6 +75,7 @@ public class DomainExpansion : MonoBehaviour
         spawning = true;
         bossMusic.Play();
         yield return new WaitForSeconds(2f);
+        enemyScript.CurrentHealth = 100;
         bossBarUI.SetActive(true);
         while (enemyScript.CurrentHealth < enemyScript.MaxHealth)
         {
