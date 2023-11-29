@@ -6,7 +6,8 @@ public class SpawnMary : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Mary;
-
+    public GameObject MaryHealthBar;
+    [SerializeField] private AudioSource sound;
 
     void Start()
     {
@@ -18,6 +19,9 @@ public class SpawnMary : MonoBehaviour
         if (player.gameObject.tag == "Player")
         {
             Mary.SetActive(true);
+            MaryHealthBar.SetActive(true);
+            sound.Play();
+            gameObject.SetActive(false);
         }
 
     }
