@@ -12,6 +12,6 @@ public class UIPageCounter : MonoBehaviour
     void Update()
     {
         pages = bookCount.currHealth;
-        pagedText.text = "PAGES: " + (int)pages;
+        pagedText.text = "PAGES: " + pages;
     }
 }
