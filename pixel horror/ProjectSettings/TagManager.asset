@@ -11,6 +11,10 @@ TagManager:
   - MaryCamera
   - Pages
   - Mary
+  - PageM
+  - PageA
+  - PageR
+  - PageY
   layers:
   - Default
   - TransparentFX
