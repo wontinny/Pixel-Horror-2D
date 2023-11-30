@@ -83,6 +83,15 @@ public class PlayerController : MonoBehaviour
         {
             bookCount.changeCurrHealth(startBookCount);
         }
+
+        if(y == 2)
+        {
+            PlayerPrefs.SetFloat("PageM", 0f);
+            PlayerPrefs.SetFloat("PageA", 0f);
+            PlayerPrefs.SetFloat("PageR", 0f);
+            PlayerPrefs.SetFloat("PageY", 0f);
+            bookCount.changeCurrHealth(0);
+        }
         
         if(y == 5)
         {
@@ -291,11 +300,33 @@ public class PlayerController : MonoBehaviour
             healthObject.changeCurrHealth(CurrentHealth);
             Destroy(other.gameObject);
         }
-        if (other.gameObject.tag == "Pages")
+        if (other.gameObject.tag == "PageM")
         {
             currentBooks += 1;
             bookCount.changeCurrHealth(currentBooks);
             Destroy(other.gameObject);
+            PlayerPrefs.SetFloat("PageM", 1f);
+        }
+        if (other.gameObject.tag == "PageA")
+        {
+            currentBooks += 1;
+            bookCount.changeCurrHealth(currentBooks);
+            Destroy(other.gameObject);
+            PlayerPrefs.SetFloat("PageA", 1f);
+        }
+        if (other.gameObject.tag == "PageR")
+        {
+            currentBooks += 1;
+            bookCount.changeCurrHealth(currentBooks);
+            Destroy(other.gameObject);
+            PlayerPrefs.SetFloat("PageR", 1f);
+        }
+        if (other.gameObject.tag == "PageY")
+        {
+            currentBooks += 1;
+            bookCount.changeCurrHealth(currentBooks);
+            Destroy(other.gameObject);
+            PlayerPrefs.SetFloat("PageY", 1f);
         }
     }
 
