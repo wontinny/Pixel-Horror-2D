@@ -19,11 +19,11 @@ public class Attacks : MonoBehaviour
    
     public void AttackRight()
     {
-        batColliderLeft.enabled = true;
+        batColliderLeft.enabled = false;
     }
     public void AttackLeft()
     {
-        batColliderRight.enabled = true;
+        batColliderRight.enabled = false;
     }
     public void StopAttack()
     {

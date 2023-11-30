@@ -310,7 +310,6 @@ GameObject:
   - component: {fileID: 4909108887078182940}
   - component: {fileID: 2877843453829445575}
   - component: {fileID: 2540331653437483292}
-  - component: {fileID: 1796012449}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -470,6 +469,10 @@ MonoBehaviour:
   GameOverScript: {fileID: 0}
   healthBar: {fileID: 0}
   inputScript: {fileID: 0}
+  healthObject: {fileID: 11400000, guid: 88c41dd7ade8f47499d7d7e023353fe6, type: 2}
+  bookCount: {fileID: 11400000, guid: d3b530f898c073c4e9a55f6f600226c9, type: 2}
+  startBookCount: 0
+  currentBooks: 0
 --- !u!50 &4033040181907396742
 Rigidbody2D:
   serializedVersion: 4
@@ -816,15 +819,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1796012449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7760851017799762786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a8f8d9162b09b24eb631b29591a2cd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
