@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.InputSystem;
 
 public class DomainExpansion : MonoBehaviour
 {
@@ -38,6 +39,11 @@ public class DomainExpansion : MonoBehaviour
     [Header ("Light Effect")]
     [SerializeField] private Light2D Light;
 
+    [Header("Stop Player")]
+    public GameObject Player;
+    public PlayerInput inputScript;
+    public ExtraAttack ExtraAttackScript;
+
     bool DomainExpanded = false;
 
     private void HealthCheck()
@@ -47,7 +53,15 @@ public class DomainExpansion : MonoBehaviour
             enemyScript.enabled = false;
             DomainExpanded = true;
             StartCoroutine(TimeDelay());
+            StartCoroutine(StopInput());
         }
+    }
+
+    IEnumerator StopInput()
+    {   
+        inputScript.enabled = false;
+        yield return new WaitForSeconds(15.5f);
+        inputScript.enabled = true;
     }
 
     IEnumerator TimeDelay()
@@ -89,6 +103,7 @@ public class DomainExpansion : MonoBehaviour
         enemyScript.enabled = false;
         yield return new WaitForSeconds(1f);
         enemyScript.enabled = true;
+        ExtraAttackScript.enabled = true;
     }
 
     void SpawnMobs()
@@ -112,6 +127,10 @@ public class DomainExpansion : MonoBehaviour
     public void Start()
     {
         bossBar.SetMaxHealth(enemyScript.CurrentHealth);
+        this.Player = GameObject.FindWithTag("Player");
+        inputScript = Player.GetComponent<PlayerInput>();
+        ExtraAttackScript = GetComponent<ExtraAttack>();
+        ExtraAttackScript.enabled = false;
     }
 
     public void Update()

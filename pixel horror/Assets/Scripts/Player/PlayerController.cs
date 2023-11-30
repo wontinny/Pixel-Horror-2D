@@ -256,7 +256,7 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("damage");
         CurrentHealth -= damageAmount;
         StartCoroutine(StopInput());
-        rb.AddForce(knockback, ForceMode2D.Impulse); // removed until it gets reworked
+        rb.AddForce(knockback, ForceMode2D.Impulse);
 
         healthObject.changeCurrHealth(CurrentHealth);
         healthBar.SetHealth(CurrentHealth);                                              //added by Lukas 
