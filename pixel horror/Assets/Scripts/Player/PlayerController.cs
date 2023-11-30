@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerController : MonoBehaviour
@@ -57,9 +58,16 @@ public class PlayerController : MonoBehaviour
     public float startBookCount = 0;
     public float currentBooks;
 
-
     void Start()
-    {
+    {   
+        int y = SceneManager.GetActiveScene().buildIndex;
+        if(y == 2)
+        {
+            healthObject.changeCurrHealth(100);
+            bookCount.changeCurrHealth(0);
+
+        }
+
         if (healthObject.currHealth <= 0)
                 {
                     healthObject.changeCurrHealth(MaxHealth);
@@ -74,6 +82,19 @@ public class PlayerController : MonoBehaviour
         else
         {
             bookCount.changeCurrHealth(startBookCount);
+        }
+        
+        if(y == 5)
+        {
+            PlayerPrefs.SetFloat("x", -0.97f);
+            PlayerPrefs.SetFloat("y", 0.26f);
+        }
+
+        if(y == 6)
+        {
+            float lastx = PlayerPrefs.GetFloat("x");
+            float lasty = PlayerPrefs.GetFloat("y");
+            transform.position = (new Vector3(lastx, lasty, transform.position.z));
         }
 
         rb = GetComponent<Rigidbody2D>();
