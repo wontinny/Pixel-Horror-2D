@@ -83,8 +83,14 @@ public class PlayerController : MonoBehaviour
         {
             bookCount.changeCurrHealth(startBookCount);
         }
+        
+        float something = bookCount.currHealth;
+        if(y == 6 && (something < 1f))
+        {
+            bookCount.changeCurrHealth(1f);
+        }
 
-        if(y == 2)
+        if (y == 2)
         {
             PlayerPrefs.SetFloat("PageM", 0f);
             PlayerPrefs.SetFloat("PageA", 0f);
