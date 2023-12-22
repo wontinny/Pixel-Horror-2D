@@ -14,7 +14,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/phamstatic/Fuel-Prediction-Application">
+  <a href="https://github.com/wontinny/Pixel-Horror-2D">
     <img src="https://github.com/wontinny/Pixel-Horror-2D/blob/main/pixel%20horror/Assets/UI/Game%20Title.png" alt="Logo" width="800" height="100">
   </a>
 
