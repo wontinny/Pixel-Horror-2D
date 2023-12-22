@@ -34,3 +34,5 @@ A 2D Unity game created by Key Lime Studios at the University of Houston.
 - Lukas George
 - John Pham
 - Brandon Won
+
+You can run the game by building it in Unity version 2021.30f1 LTS.
